@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Najla AlOtaibi | Professional Portfolio</title>
+<meta name="description" content="Professional portfolio of Najla AlOtaibi — Executive Assistant: committee governance, executive follow-up, reporting and digital projects.">
+<meta name="author" content="Najla AlOtaibi">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0E1A33">
+<meta property="og:title" content="Najla AlOtaibi | Professional Portfolio">
+<meta property="og:description" content="Executive Assistant — committee governance, executive follow-up, reporting and digital projects.">
+<meta property="og:type" content="profile">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main" id="skip"></a>
+
+<!-- Top bar -->
+<header class="topbar" id="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="">
+      <span class="brand-line" aria-hidden="true"></span>
+      <span class="brand-text">
+        <b id="brand-name"></b>
+        <small>Executive Assistant</small>
+      </span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main"></nav>
+    <div class="bar-end">
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <svg class="hero-art" viewBox="0 0 800 520" preserveAspectRatio="xMinYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D3159"/><stop offset="1" stop-color="#0A1328"/></linearGradient>
+        <linearGradient id="hg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25406B"/><stop offset="1" stop-color="#0E1A33"/></linearGradient>
+        <linearGradient id="hgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0D9A8" stop-opacity=".95"/><stop offset=".45" stop-color="#C79E5E" stop-opacity=".85"/><stop offset="1" stop-color="#4A3720" stop-opacity=".2"/></linearGradient>
+        <linearGradient id="hglass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".09"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <pattern id="hstripes" width="7" height="10" patternUnits="userSpaceOnUse"><rect width="1" height="10" fill="#9DB3D8" fill-opacity=".16"/></pattern>
+        <linearGradient id="hfade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <mask id="hmask"><rect width="800" height="520" fill="url(#hfade)"/></mask>
+      </defs>
+      <g mask="url(#hmask)">
+        <polygon points="0,0 380,0 140,520 0,520" fill="url(#hg1)"/>
+        <polygon points="380,0 560,0 320,520 140,520" fill="url(#hg2)" opacity=".85"/>
+        <rect x="34" y="30" width="170" height="490" fill="url(#hstripes)"/>
+        <polygon points="214,70 286,46 286,520 214,520" fill="url(#hgold)"/>
+        <polygon points="286,46 440,0 440,520 286,520" fill="url(#hglass)"/>
+        <g fill="none" stroke="#C9A36A" stroke-width="1">
+          <line x1="0" y1="190" x2="600" y2="0" stroke-opacity=".55"/>
+          <line x1="0" y1="360" x2="700" y2="520" stroke-opacity=".35"/>
+          <line x1="140" y1="520" x2="380" y2="0" stroke-opacity=".4"/>
+          <line x1="286" y1="46" x2="286" y2="520" stroke-opacity=".5"/>
+        </g>
+      </g>
+    </svg>
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <div class="eyebrow" id="hero-kicker"></div>
+        <h1 id="hero-name"></h1>
+        <p class="hero-role" id="hero-role"></p>
+        <p class="hero-tag" id="hero-head"></p>
+        <p class="hero-lede" id="hero-lede"></p>
+        <div class="hero-acts">
+          <a class="btn gold" href="#projects" id="cta1"></a>
+          <a class="btn ghost" id="cta2" download></a>
+        </div>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </section>
+
+  <!-- Areas of focus -->
+  <div class="focus-strip">
+    <div class="wrap">
+      <div class="strip-title" id="focus-title"></div>
+      <div class="pillars" id="focus-list"></div>
+    </div>
+  </div>
+
+  <!-- Profile -->
+  <section class="sec" id="about"><div class="wrap">
+    <div class="about">
+      <div class="sec-head" id="about-head"></div>
+      <div class="about-text" id="about-text"></div>
+    </div>
+  </div></section>
+
+  <!-- Work -->
+  <section class="sec tint" id="projects"><div class="wrap">
+    <div class="sec-head" id="proj-head"></div>
+    <div class="proj-grid" id="proj-list"></div>
+  </div></section>
+
+  <!-- Experience -->
+  <section class="sec" id="experience"><div class="wrap">
+    <div class="sec-head" id="exp-head"></div>
+    <div class="timeline" id="exp-list"></div>
+  </div></section>
+
+  <!-- Achievements -->
+  <section class="sec tint" id="wins"><div class="wrap">
+    <div class="sec-head" id="wins-head"></div>
+    <div class="wins" id="wins-grid"></div>
+  </div></section>
+
+  <!-- Skills -->
+  <section class="sec" id="skills"><div class="wrap">
+    <div class="sec-head" id="skills-head"></div>
+    <div class="grid-cards" id="skills-grid"></div>
+  </div></section>
+
+  <!-- Credentials -->
+  <section class="sec tint" id="credentials"><div class="wrap">
+    <div class="sec-head" id="cred-head"></div>
+    <div class="grid-cards creds" id="cred-grid"></div>
+  </div></section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <svg class="contact-art" viewBox="0 0 600 400" preserveAspectRatio="xMinYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="cg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D3159"/><stop offset="1" stop-color="#0A1328"/></linearGradient>
+        <linearGradient id="cgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9CF9C" stop-opacity=".7"/><stop offset="1" stop-color="#4A3720" stop-opacity="0"/></linearGradient>
+        <linearGradient id="cfade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <mask id="cmask"><rect width="600" height="400" fill="url(#cfade)"/></mask>
+      </defs>
+      <g mask="url(#cmask)">
+        <polygon points="0,0 260,0 90,400 0,400" fill="url(#cg1)"/>
+        <polygon points="150,60 196,44 196,400 150,400" fill="url(#cgold)"/>
+        <g stroke="#C9A36A" stroke-width="1" fill="none">
+          <line x1="0" y1="120" x2="420" y2="0" stroke-opacity=".45"/>
+          <line x1="90" y1="400" x2="260" y2="0" stroke-opacity=".35"/>
+        </g>
+      </g>
+    </svg>
+    <div class="wrap contact-in">
+      <div class="sec-head light" id="contact-head"></div>
+      <div class="contact-grid" id="contact-grid"></div>
+      <footer class="foot" id="footer"></footer>
+    </div>
+  </section>
+</main>
+
+<!-- Project detail dialog -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="modal-panel" id="modal-panel" tabindex="-1">
+    <div class="modal-top">
+      <div><span class="badge" id="m-badge"></span><h3 id="m-title"></h3></div>
+      <button type="button" class="x" id="m-close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
+
+<!-- Image lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="x lb-close" id="lb-close"><span aria-hidden="true">&times;</span></button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev"><span aria-hidden="true">&#8249;</span></button>
+  <figure class="lb-fig">
+    <img id="lb-img" alt="">
+    <figcaption><span id="lb-cap"></span><b id="lb-count"></b></figcaption>
+  </figure>
+  <button type="button" class="lb-nav lb-next" id="lb-next"><span aria-hidden="true">&#8250;</span></button>
+</div>
+
+<script src="assets/js/content.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
