@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WDS 2028 — لوحات المؤشرات التنفيذية (نموذج تجريبي)</title>
+<script src="../assets/js/chart.umd.js"></script>
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+
+<div class="top">
+  <a class="brandmark-link" href="../index.html"><img class="brandmark" src="../assets/logo/wds-logo.png" alt="World Defense Show"></a>
+  <div>
+    <h1 data-ar="لوحات المؤشرات التنفيذية — معرض الدفاع العالمي 2028" data-en="Executive Dashboards — World Defense Show 2028"></h1>
+    <div class="sub" data-ar="إعداد: نجلاء العتيبي · نموذج عرض ببيانات وهمية" data-en="Prepared by Najla AlOtaibi · Demonstration model with fictional data"></div>
+  </div>
+  <div class="right">
+    <span class="chip gold" data-ar="نسخة 2028" data-en="Edition 2028"></span>
+    <span class="chip" data-ar="الرياض، السعودية" data-en="Riyadh, Saudi Arabia"></span>
+    <a class="back" href="../index.html" data-ar="→ العودة إلى ملف الأعمال" data-en="← Back to portfolio"></a>
+    <button class="chip" id="lang">English</button>
+  </div>
+</div>
+
+<div class="demo-ribbon" data-ar="نموذج عرض: جميع الأرقام والأسماء والتواريخ وهمية بالكامل ولا تمثل بيانات فعلية لأي جهة." data-en="Demonstration model: all figures, names and dates are entirely fictional and do not represent any organization's actual data."></div>
+
+<div class="tabs">
+  <button class="tab on" data-p="assets" data-ar="جاهزية الأصول" data-en="Asset readiness"></button>
+  <button class="tab" data-p="outcomes" data-ar="مخرجات اللجان" data-en="Committee outcomes"></button>
+  <button class="tab" data-p="delegations" data-ar="الوفود والزيارات" data-en="Delegations & visits"></button>
+</div>
+
+<div class="wrap">
+  <!-- ASSETS -->
+  <section class="panel on" id="assets">
+    <div class="kpis">
+      <div class="kpi"><span data-ar="إجمالي الأصول" data-en="Total assets"></span><b>248</b><i data-ar="7 فئات تشغيلية" data-en="Across 7 operational categories"></i></div>
+      <div class="kpi ok"><span data-ar="مؤكدة" data-en="Confirmed"></span><b>163</b><i data-ar="66% من الإجمالي" data-en="66% of total"></i></div>
+      <div class="kpi g"><span data-ar="قيد الإجراء" data-en="Under progress"></span><b>61</b><i data-ar="25% من الإجمالي" data-en="25% of total"></i></div>
+      <div class="kpi bad"><span data-ar="ملغاة" data-en="Cancelled"></span><b>24</b><i data-ar="9% من الإجمالي" data-en="9% of total"></i></div>
+      <div class="kpi"><span data-ar="نسبة الجاهزية" data-en="Readiness rate"></span><b>66%</b><i data-ar="المؤكد ÷ الإجمالي" data-en="Confirmed ÷ total"></i></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3 data-ar="الحالة حسب الفئة" data-en="Status by category"></h3>
+        <p class="hint" data-ar="عدد الأصول في كل فئة موزعًا على حالات التأكيد." data-en="Assets per category split by confirmation status."></p>
+        <div class="chart"><canvas id="c-assets"></canvas></div></div>
+      <div class="box"><h3 data-ar="توزيع الحالة" data-en="Status split"></h3>
+        <p class="hint" data-ar="نسبة كل حالة من إجمالي الأصول." data-en="Share of each status of all assets."></p>
+        <div class="chart"><canvas id="c-assets-d"></canvas></div></div>
+    </div>
+    <div class="box" style="margin-top:18px"><h3 data-ar="سجل الأصول" data-en="Asset register"></h3>
+      <p class="hint" data-ar="عيّنة من السجل؛ البيانات تُستورد من ملف Excel في النموذج الأصلي." data-en="Sample of the register; in the original model the data is imported from an Excel workbook."></p>
+      <div class="tools">
+        <select id="f-cat"></select>
+        <input type="search" id="f-q" placeholder="بحث…">
+      </div>
+      <div class="scroll"><table id="t-assets"></table></div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="panel" id="outcomes">
+    <div class="kpis">
+      <div class="kpi"><span data-ar="إجمالي الإجراءات" data-en="Total actions"></span><b>184</b><i data-ar="5 لجان فرعية" data-en="Across 5 subcommittees"></i></div>
+      <div class="kpi ok"><span data-ar="مغلقة" data-en="Closed"></span><b>112</b><i data-ar="نسبة الإغلاق 61%" data-en="61% closure rate"></i></div>
+      <div class="kpi g"><span data-ar="قيد التنفيذ" data-en="In progress"></span><b>49</b><i data-ar="27% من المحفظة" data-en="27% of portfolio"></i></div>
+      <div class="kpi bad"><span data-ar="متأخرة" data-en="Overdue"></span><b>23</b><i data-ar="أقدمها متأخر 41 يومًا" data-en="Oldest overdue by 41 days"></i></div>
+      <div class="kpi"><span data-ar="أعلى عبء" data-en="Heaviest workload"></span><b>44</b><i data-ar="العمليات والخدمات اللوجستية" data-en="Operations & Logistics"></i></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3 data-ar="محفظة الإجراءات حسب اللجنة الفرعية" data-en="Action portfolio by subcommittee"></h3>
+        <p class="hint" data-ar="مغلق · قيد التنفيذ · متأخر لكل لجنة." data-en="Closed · in progress · overdue per subcommittee."></p>
+        <div class="chart"><canvas id="c-out"></canvas></div></div>
+      <div class="box"><h3 data-ar="أعمار التأخير" data-en="Overdue aging"></h3>
+        <p class="hint" data-ar="عدد الإجراءات المتأخرة حسب مدة التأخير." data-en="Overdue actions by how long they are late."></p>
+        <div class="chart"><canvas id="c-age"></canvas></div></div>
+    </div>
+    <div class="box" style="margin-top:18px"><h3 data-ar="الإجراءات المتأخرة" data-en="Overdue actions"></h3>
+      <p class="hint" data-ar="البنود التي تجاوزت تاريخ استحقاقها ولم تُغلق." data-en="Items past their due date and not yet closed."></p>
+      <div class="scroll"><table id="t-out"></table></div>
+    </div>
+  </section>
+
+  <!-- DELEGATIONS -->
+  <section class="panel" id="delegations">
+    <div class="kpis">
+      <div class="kpi"><span data-ar="الوفود المسجلة" data-en="Delegations registered"></span><b>18</b><i data-ar="12 خارجي · 6 داخلي" data-en="12 external · 6 internal"></i></div>
+      <div class="kpi"><span data-ar="زيارات مطلوبة" data-en="Visits requested"></span><b>96</b><i data-ar="من 41 شركة عارضة" data-en="From 41 exhibiting companies"></i></div>
+      <div class="kpi ok"><span data-ar="زيارات منفذة" data-en="Visits completed"></span><b>63</b><i data-ar="نسبة التنفيذ 66%" data-en="66% completion rate"></i></div>
+      <div class="kpi g"><span data-ar="برامج قيد المراجعة" data-en="Programmes under review"></span><b>5</b><i data-ar="بانتظار الاعتماد المزدوج" data-en="Awaiting dual approval"></i></div>
+      <div class="kpi bad"><span data-ar="طلبات دون تنفيذ" data-en="Open requests"></span><b>33</b><i data-ar="تحتاج جدولة" data-en="Require scheduling"></i></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3 data-ar="الزيارات: مطلوب مقابل منفذ حسب الدولة" data-en="Visits: requested vs completed by country"></h3>
+        <p class="hint" data-ar="أعلى عشر دول من حيث عدد الزيارات المطلوبة." data-en="Top ten countries by requested visits."></p>
+        <div class="chart"><canvas id="c-del"></canvas></div></div>
+      <div class="box"><h3 data-ar="حالة البرامج" data-en="Programme status"></h3>
+        <p class="hint" data-ar="مراحل برامج الزيارات في النظام." data-en="Visit programme stages in the system."></p>
+        <div class="chart"><canvas id="c-prog"></canvas></div></div>
+    </div>
+    <div class="box" style="margin-top:18px"><h3 data-ar="سجل الوفود" data-en="Delegation register"></h3>
+      <p class="hint" data-ar="يشمل تصنيف الوفد (خارجي/داخلي)، موقع الزيارة، ونسبة تنفيذ الزيارات." data-en="Includes delegation type (external/internal), visit venue and visit completion rate."></p>
+      <div class="tools"><select id="f-type"></select></div>
+      <div class="scroll"><table id="t-del"></table></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div data-ar="نموذج عرض من إعداد نجلاء العتيبي. أُنجز العمل الأصلي أثناء العمل في معرض الدفاع العالمي، وأُعيد إنشاء هذه النسخة ببيانات وهمية بالكامل لحماية سرية جهة العمل."
+       data-en="Demonstration model prepared by Najla AlOtaibi. The original work was produced during employment at the World Defense Show; this version has been recreated with entirely fictional data to protect employer confidentiality."></div>
+  <div data-ar="هذا النموذج شخصي ولا يمثل نظامًا رسميًا لمعرض الدفاع العالمي ولا اعتمادًا منه." data-en="This model is personal and does not represent an official World Defense Show system or endorsement."></div>
+</footer>
+
+<script>
+/* ---------- synthetic data (fully fictional) ---------- */
+const CAT = [
+  {ar:"منصات العرض الخارجي", en:"Outdoor display pads",  c:34, p:11, x:4},
+  {ar:"قاعات العرض الداخلية", en:"Indoor halls",          c:41, p:9,  x:3},
+  {ar:"المنصات المشتركة",     en:"Shared stands",          c:22, p:13, x:6},
+  {ar:"مناطق العروض الحية",   en:"Live demo areas",        c:18, p:7,  x:2},
+  {ar:"مرافق الضيافة",        en:"Hospitality facilities", c:19, p:8,  x:3},
+  {ar:"نقاط التشغيل والأمن",  en:"Operations & security",  c:17, p:6,  x:3},
+  {ar:"اللوحات والإرشاد",     en:"Signage & wayfinding",   c:12, p:7,  x:3}
+];
+const ASSETS = [
+  {id:"AST-2028-014", cat:0, ar:"منصة العرض A3", en:"Display pad A3",        owner:{ar:"العمليات",en:"Operations"},     st:"c", date:"12 يناير 2028|12 Jan 2028"},
+  {id:"AST-2028-027", cat:1, ar:"القاعة 2 — الجناح الشمالي", en:"Hall 2 — North wing", owner:{ar:"العمليات",en:"Operations"}, st:"p", date:"03 فبراير 2028|03 Feb 2028"},
+  {id:"AST-2028-031", cat:2, ar:"المنصة المشتركة 7", en:"Shared stand 7",     owner:{ar:"التسويق",en:"Marketing"},       st:"c", date:"21 يناير 2028|21 Jan 2028"},
+  {id:"AST-2028-046", cat:3, ar:"ميدان العروض الحية 1", en:"Live demo field 1", owner:{ar:"الأمن",en:"Security"},        st:"p", date:"14 فبراير 2028|14 Feb 2028"},
+  {id:"AST-2028-052", cat:4, ar:"مجلس كبار الضيوف", en:"VIP majlis",           owner:{ar:"المراسم",en:"Protocol"},       st:"c", date:"28 يناير 2028|28 Jan 2028"},
+  {id:"AST-2028-058", cat:5, ar:"مركز التشغيل الموحد", en:"Unified operations centre", owner:{ar:"العمليات",en:"Operations"}, st:"c", date:"05 يناير 2028|05 Jan 2028"},
+  {id:"AST-2028-063", cat:6, ar:"لوحات الإرشاد — البوابة 3", en:"Wayfinding — Gate 3", owner:{ar:"التسويق",en:"Marketing"}, st:"x", date:"—|—"},
+  {id:"AST-2028-071", cat:2, ar:"المنصة المشتركة 12", en:"Shared stand 12",    owner:{ar:"التسويق",en:"Marketing"},      st:"p", date:"19 فبراير 2028|19 Feb 2028"},
+  {id:"AST-2028-084", cat:0, ar:"منصة العرض D1", en:"Display pad D1",          owner:{ar:"العمليات",en:"Operations"},    st:"c", date:"30 يناير 2028|30 Jan 2028"},
+  {id:"AST-2028-090", cat:4, ar:"قاعة الضيافة الثانية", en:"Hospitality lounge 2", owner:{ar:"المراسم",en:"Protocol"},   st:"x", date:"—|—"}
+];
+const SUBC = [
+  {ar:"الاتصال المؤسسي والتسويق", en:"Corp. Comms & Marketing", closed:24, prog:9,  over:4},
+  {ar:"العمليات والخدمات اللوجستية", en:"Operations & Logistics", closed:27, prog:11, over:6},
+  {ar:"الأمن", en:"Security",                                   closed:21, prog:8,  over:3},
+  {ar:"المراسم والوفود", en:"Protocol & Delegations",            closed:23, prog:12, over:7},
+  {ar:"الفعاليات المصاحبة", en:"Features",                       closed:17, prog:9,  over:3}
+];
+const OVERDUE = [
+  {id:"ACT-2028-112", sub:3, ar:"اعتماد مسار الجولة للوفد رقم 7", en:"Approve tour route for delegation 7", days:41, due:"18 يونيو 2026|18 Jun 2026", pr:70},
+  {id:"ACT-2028-098", sub:1, ar:"تأكيد مزود خدمة النقل الداخلي", en:"Confirm internal transport provider", days:33, due:"26 يونيو 2026|26 Jun 2026", pr:55},
+  {id:"ACT-2028-131", sub:0, ar:"إقرار الخطة الإعلامية للنسخة", en:"Sign off the edition media plan", days:26, due:"03 يوليو 2026|03 Jul 2026", pr:40},
+  {id:"ACT-2028-144", sub:3, ar:"استكمال بيانات ممثلي الجهات", en:"Complete entity representative data", days:19, due:"10 يوليو 2026|10 Jul 2026", pr:80},
+  {id:"ACT-2028-150", sub:2, ar:"تحديث خطة التصاريح والدخول", en:"Update access and permits plan", days:12, due:"17 يوليو 2026|17 Jul 2026", pr:35},
+  {id:"ACT-2028-156", sub:4, ar:"جدولة العروض المصاحبة لليوم الثالث", en:"Schedule day-3 side features", days:8, due:"21 يوليو 2026|21 Jul 2026", pr:60},
+  {id:"ACT-2028-161", sub:1, ar:"مراجعة احتياج القوى العاملة للقاعات", en:"Review hall manpower requirement", days:5, due:"24 يوليو 2026|24 Jul 2026", pr:25}
+];
+const AGE = [{ar:"1–7 أيام",en:"1–7 days",n:6},{ar:"8–14 يومًا",en:"8–14 days",n:5},{ar:"15–30 يومًا",en:"15–30 days",n:7},{ar:"أكثر من 30 يومًا",en:"30+ days",n:5}];
+const COUNTRIES = [
+  {ar:"السعودية",en:"Saudi Arabia",req:21,done:16},{ar:"الإمارات",en:"UAE",req:12,done:9},
+  {ar:"تركيا",en:"Türkiye",req:11,done:8},{ar:"الولايات المتحدة",en:"United States",req:10,done:6},
+  {ar:"فرنسا",en:"France",req:9,done:6},{ar:"إيطاليا",en:"Italy",req:8,done:5},
+  {ar:"كوريا الجنوبية",en:"South Korea",req:7,done:4},{ar:"الصين",en:"China",req:6,done:3},
+  {ar:"ألمانيا",en:"Germany",req:6,done:4},{ar:"المملكة المتحدة",en:"United Kingdom",req:6,done:2}
+];
+const PROG = [{ar:"مسودة",en:"Draft",n:4},{ar:"قيد المراجعة",en:"Under review",n:5},{ar:"معتمد مبدئيًا",en:"Internally approved",n:3},{ar:"معتمد نهائيًا",en:"Finally approved",n:6}];
+const DELS = [
+  {id:"DEL-01", ar:"وفد وزاري — أ", en:"Ministerial delegation A", type:"ext", ar_c:"السعودية", en_c:"Saudi Arabia", venue:{ar:"القاعة 1",en:"Hall 1"}, req:9, done:7},
+  {id:"DEL-02", ar:"وفد صناعي — ب", en:"Industry delegation B",  type:"ext", ar_c:"الإمارات", en_c:"UAE", venue:{ar:"القاعة 3",en:"Hall 3"}, req:7, done:5},
+  {id:"DEL-03", ar:"وفد داخلي — قطاع العمليات", en:"Internal — Operations", type:"int", ar_c:"السعودية", en_c:"Saudi Arabia", venue:{ar:"الساحة الوسطى",en:"Courtyard"}, req:5, done:5},
+  {id:"DEL-04", ar:"وفد صناعي — ج", en:"Industry delegation C",  type:"ext", ar_c:"تركيا", en_c:"Türkiye", venue:{ar:"القاعة 2",en:"Hall 2"}, req:8, done:4},
+  {id:"DEL-05", ar:"وفد أكاديمي — د", en:"Academic delegation D", type:"ext", ar_c:"فرنسا", en_c:"France", venue:{ar:"منطقة العروض",en:"Demo area"}, req:6, done:3},
+  {id:"DEL-06", ar:"وفد داخلي — قطاع الأمن", en:"Internal — Security", type:"int", ar_c:"السعودية", en_c:"Saudi Arabia", venue:{ar:"القاعة 4",en:"Hall 4"}, req:4, done:4},
+  {id:"DEL-07", ar:"وفد تجاري — هـ", en:"Commercial delegation E", type:"ext", ar_c:"إيطاليا", en_c:"Italy", venue:{ar:"المنصات A–D",en:"Pads A–D"}, req:7, done:4},
+  {id:"DEL-08", ar:"وفد حكومي — و", en:"Government delegation F", type:"ext", ar_c:"كوريا الجنوبية", en_c:"South Korea", venue:{ar:"القاعة 1",en:"Hall 1"}, req:6, done:3}
+];
+
+/* ---------- engine ---------- */
+let L = 'ar';
+const pick = o => o[L];
+const d2 = s => s.split('|')[L==='ar'?0:1];
+let charts = [];
+
+function applyLang(){
+  document.documentElement.lang = L;
+  document.documentElement.dir = L==='ar' ? 'rtl' : 'ltr';
+  document.body.style.fontFamily = L==='ar' ? "'Plex AR',sans-serif" : "'Plex AR',system-ui,sans-serif";
+  document.getElementById('lang').textContent = L==='ar' ? 'English' : 'العربية';
+  document.querySelectorAll('[data-ar]').forEach(n=>{ n.textContent = n.dataset[L]; });
+  document.getElementById('f-q').placeholder = L==='ar' ? 'بحث…' : 'Search…';
+  fillSelects(); drawTables(); drawCharts();
+}
+function fillSelects(){
+  const cat = document.getElementById('f-cat');
+  const keep = cat.value;
+  cat.innerHTML = `<option value="">${L==='ar'?'كل الفئات':'All categories'}</option>` +
+    CAT.map((c,i)=>`<option value="${i}">${pick(c)}</option>`).join('');
+  cat.value = keep;
+  const ty = document.getElementById('f-type'); const k2 = ty.value;
+  ty.innerHTML = `<option value="">${L==='ar'?'كل الوفود':'All delegations'}</option>
+    <option value="ext">${L==='ar'?'خارجي':'External'}</option>
+    <option value="int">${L==='ar'?'داخلي':'Internal'}</option>`;
+  ty.value = k2;
+}
+const stPill = st => st==='c' ? `<span class="pill p-ok">${L==='ar'?'مؤكد':'Confirmed'}</span>`
+                 : st==='p' ? `<span class="pill p-warn">${L==='ar'?'قيد الإجراء':'Under progress'}</span>`
+                 : `<span class="pill p-bad">${L==='ar'?'ملغى':'Cancelled'}</span>`;
+
+function drawTables(){
+  const cat = document.getElementById('f-cat').value, q = document.getElementById('f-q').value.trim().toLowerCase();
+  const rows = ASSETS.filter(a=>(cat===''||a.cat==+cat) && (!q || (pick(a)+a.id).toLowerCase().includes(q)));
+  document.getElementById('t-assets').innerHTML =
+    `<thead><tr><th>${L==='ar'?'الرقم':'ID'}</th><th>${L==='ar'?'الأصل':'Asset'}</th><th>${L==='ar'?'الفئة':'Category'}</th><th>${L==='ar'?'الجهة المسؤولة':'Owner'}</th><th>${L==='ar'?'الحالة':'Status'}</th><th>${L==='ar'?'تاريخ التأكيد':'Confirmed on'}</th></tr></thead><tbody>`
+    + (rows.length?rows.map(a=>`<tr><td>${a.id}</td><td>${pick(a)}</td><td>${pick(CAT[a.cat])}</td><td>${pick(a.owner)}</td><td>${stPill(a.st)}</td><td>${d2(a.date)}</td></tr>`).join('')
+       :`<tr><td colspan="6" style="color:var(--muted)">${L==='ar'?'لا توجد نتائج':'No results'}</td></tr>`)
+    + `</tbody>`;
+
+  document.getElementById('t-out').innerHTML =
+    `<thead><tr><th>${L==='ar'?'الرقم':'ID'}</th><th>${L==='ar'?'بند العمل':'Action'}</th><th>${L==='ar'?'اللجنة الفرعية':'Subcommittee'}</th><th>${L==='ar'?'الاستحقاق':'Due'}</th><th>${L==='ar'?'التأخير':'Overdue'}</th><th>${L==='ar'?'نسبة الإنجاز':'Progress'}</th></tr></thead><tbody>`
+    + OVERDUE.map(o=>`<tr><td>${o.id}</td><td>${pick(o)}</td><td>${pick(SUBC[o.sub])}</td><td>${d2(o.due)}</td>
+        <td><span class="pill ${o.days>30?'p-bad':o.days>14?'p-warn':'p-neutral'}">${o.days} ${L==='ar'?'يومًا':'days'}</span></td>
+        <td><div style="display:flex;align-items:center;gap:8px"><div class="bar" style="flex:1"><i style="width:${o.pr}%"></i></div><span style="font-size:12px;color:var(--muted)">${o.pr}%</span></div></td></tr>`).join('')
+    + `</tbody>`;
+
+  const ty = document.getElementById('f-type').value;
+  const dl = DELS.filter(d=>!ty||d.type===ty);
+  document.getElementById('t-del').innerHTML =
+    `<thead><tr><th>${L==='ar'?'الرقم':'ID'}</th><th>${L==='ar'?'الوفد':'Delegation'}</th><th>${L==='ar'?'التصنيف':'Type'}</th><th>${L==='ar'?'الدولة':'Country'}</th><th>${L==='ar'?'الموقع':'Venue'}</th><th>${L==='ar'?'مطلوب':'Requested'}</th><th>${L==='ar'?'منفذ':'Completed'}</th><th>${L==='ar'?'النسبة':'Rate'}</th></tr></thead><tbody>`
+    + dl.map(d=>{const r=Math.round(d.done/d.req*100);return `<tr><td>${d.id}</td><td>${pick(d)}</td>
+        <td><span class="pill ${d.type==='ext'?'p-neutral':'p-ok'}">${d.type==='ext'?(L==='ar'?'خارجي':'External'):(L==='ar'?'داخلي':'Internal')}</span></td>
+        <td>${L==='ar'?d.ar_c:d.en_c}</td><td>${pick(d.venue)}</td><td>${d.req}</td><td>${d.done}</td>
+        <td><div style="display:flex;align-items:center;gap:8px"><div class="bar" style="flex:1"><i style="width:${r}%"></i></div><span style="font-size:12px;color:var(--muted)">${r}%</span></div></td></tr>`}).join('')
+    + `</tbody>`;
+}
+
+function drawCharts(){
+  charts.forEach(c=>c.destroy()); charts=[];
+  const navy='#001F60', blue='#00A4F7', gold='#D69A2A', red='#D14343', green='#1E9E6A', grid='#EDF1F8';
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{family:'Plex AR',size:12},boxWidth:12,padding:14}}},
+    scales:{x:{grid:{display:false},ticks:{font:{family:'Plex AR',size:11}}},y:{grid:{color:grid},ticks:{font:{family:'Plex AR',size:11}},beginAtZero:true}}};
+  const stacked=JSON.parse(JSON.stringify(base)); stacked.scales.x.stacked=true; stacked.scales.y.stacked=true;
+
+  charts.push(new Chart(document.getElementById('c-assets'),{type:'bar',
+    data:{labels:CAT.map(pick),datasets:[
+      {label:L==='ar'?'مؤكد':'Confirmed',data:CAT.map(c=>c.c),backgroundColor:navy,borderRadius:4},
+      {label:L==='ar'?'قيد الإجراء':'Under progress',data:CAT.map(c=>c.p),backgroundColor:gold,borderRadius:4},
+      {label:L==='ar'?'ملغى':'Cancelled',data:CAT.map(c=>c.x),backgroundColor:'#C9D2E4',borderRadius:4}]},options:stacked}));
+
+  charts.push(new Chart(document.getElementById('c-assets-d'),{type:'doughnut',
+    data:{labels:[L==='ar'?'مؤكد':'Confirmed',L==='ar'?'قيد الإجراء':'Under progress',L==='ar'?'ملغى':'Cancelled'],
+      datasets:[{data:[163,61,24],backgroundColor:[navy,gold,'#C9D2E4'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{family:'Plex AR',size:12},boxWidth:12,padding:14}}}}}));
+
+  charts.push(new Chart(document.getElementById('c-out'),{type:'bar',
+    data:{labels:SUBC.map(pick),datasets:[
+      {label:L==='ar'?'مغلق':'Closed',data:SUBC.map(s=>s.closed),backgroundColor:green,borderRadius:4},
+      {label:L==='ar'?'قيد التنفيذ':'In progress',data:SUBC.map(s=>s.prog),backgroundColor:blue,borderRadius:4},
+      {label:L==='ar'?'متأخر':'Overdue',data:SUBC.map(s=>s.over),backgroundColor:red,borderRadius:4}]},options:stacked}));
+
+  charts.push(new Chart(document.getElementById('c-age'),{type:'bar',
+    data:{labels:AGE.map(pick),datasets:[{label:L==='ar'?'إجراءات متأخرة':'Overdue actions',data:AGE.map(a=>a.n),backgroundColor:gold,borderRadius:4}]},
+    options:{...base,plugins:{legend:{display:false}}}}));
+
+  charts.push(new Chart(document.getElementById('c-del'),{type:'bar',
+    data:{labels:COUNTRIES.map(pick),datasets:[
+      {label:L==='ar'?'مطلوبة':'Requested',data:COUNTRIES.map(c=>c.req),backgroundColor:navy,borderRadius:4},
+      {label:L==='ar'?'منفذة':'Completed',data:COUNTRIES.map(c=>c.done),backgroundColor:blue,borderRadius:4}]},options:base}));
+
+  charts.push(new Chart(document.getElementById('c-prog'),{type:'doughnut',
+    data:{labels:PROG.map(pick),datasets:[{data:PROG.map(p=>p.n),backgroundColor:['#C9D2E4',gold,blue,navy],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{family:'Plex AR',size:12},boxWidth:12,padding:14}}}}}));
+}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.p).classList.add('on');
+});
+document.getElementById('lang').onclick=()=>{L=L==='ar'?'en':'ar';applyLang()};
+document.getElementById('f-cat').onchange=drawTables;
+document.getElementById('f-q').oninput=drawTables;
+document.getElementById('f-type').onchange=drawTables;
+applyLang();
+</script>
+</body>
+</html>

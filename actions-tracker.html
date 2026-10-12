@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة متابعة إجراءات اللجان (نموذج تجريبي)</title>
+<script src="../assets/js/chart.umd.js"></script>
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+
+<div class="top">
+  <a class="brandmark-link" href="../index.html"><img class="brandmark" src="../assets/logo/wds-logo.png" alt="World Defense Show"></a>
+  <div>
+    <h1 data-ar="لوحة متابعة إجراءات اللجان" data-en="Meeting Actions Tracker"></h1>
+    <div class="sub" data-ar="إعداد: نجلاء العتيبي · نموذج عرض ببيانات وهمية" data-en="Prepared by Najla AlOtaibi · Demonstration model with fictional data"></div>
+  </div>
+  <div class="right">
+    <span class="chip gold" data-ar="دورة اجتماعات الربع الثالث" data-en="Q3 meeting cycle"></span>
+    <span class="chip" data-ar="الرياض، السعودية" data-en="Riyadh, Saudi Arabia"></span>
+    <a class="back" href="../index.html" data-ar="→ العودة إلى ملف الأعمال" data-en="← Back to portfolio"></a>
+    <button class="chip" id="lang">English</button>
+  </div>
+</div>
+<div class="ribbon" data-ar="نموذج عرض: جميع الأرقام والأسماء والتواريخ وهمية بالكامل ولا تمثل بيانات فعلية لأي جهة." data-en="Demonstration model: all figures, names and dates are entirely fictional and do not represent any organization's actual data."></div>
+
+<div class="wrap">
+
+  <section class="sec">
+    <div class="sec-h"><span class="num">01</span><h2 data-ar="حجم المراسلات" data-en="Correspondence volume"></h2>
+      <span class="hint" data-ar="إجمالي الدورة الحالية" data-en="Current cycle totals"></span></div>
+    <div class="cards">
+      <div class="c"><span data-ar="صادر" data-en="Outgoing"></span><b>44</b><i data-ar="55% من إجمالي المراسلات" data-en="55% of all correspondence"></i></div>
+      <div class="c"><span data-ar="وارد" data-en="Incoming"></span><b>31</b><i data-ar="39% من إجمالي المراسلات" data-en="39% of all correspondence"></i></div>
+      <div class="c g"><span data-ar="مكتب المعالي" data-en="H.E. office"></span><b>5</b><i data-ar="6% من إجمالي المراسلات" data-en="6% of all correspondence"></i></div>
+      <div class="c n"><span data-ar="إجمالي المراسلات" data-en="Total correspondence"></span><b>80</b><i data-ar="عبر 3 قنوات" data-en="Across 3 streams"></i></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="num">02</span><h2 data-ar="حالة البرنامج في لمحة" data-en="Programme status at a glance"></h2>
+      <span class="hint" data-ar="محسوبة مقابل تاريخ اليوم" data-en="Calculated against today's date"></span></div>
+    <div class="dark">
+      <div>
+        <div class="ring"><canvas id="ring"></canvas><b>35%</b></div>
+        <div style="text-align:center;font-size:11px;letter-spacing:.14em;color:#9FBDB5;margin-top:8px" data-ar="نسبة الإغلاق" data-en="CLOSURE RATE"></div>
+      </div>
+      <div>
+        <div class="lead" id="lead"></div>
+        <div class="mini">
+          <div class="m"><span data-ar="إجمالي الإجراءات" data-en="Total actions"></span><b>26</b><i data-ar="5 لجان فرعية" data-en="5 subcommittees"></i></div>
+          <div class="m"><span data-ar="مغلقة" data-en="Closed"></span><b>9</b><i data-ar="35% من المحفظة" data-en="35% of portfolio"></i></div>
+          <div class="m"><span data-ar="معرضة للتأخر" data-en="At risk"></span><b class="gold">7</b><i data-ar="تستحق خلال 7 أيام" data-en="Due within 7 days"></i></div>
+          <div class="m"><span data-ar="متأخرة" data-en="Overdue"></span><b class="bad">6</b><i data-ar="تجاوزت الاستحقاق" data-en="Past due date"></i></div>
+          <div class="m"><span data-ar="أقدم تأخير" data-en="Most overdue"></span><b class="bad">52</b><i data-ar="يومًا" data-en="days late"></i></div>
+          <div class="m"><span data-ar="أعلى عبء" data-en="Heaviest workload"></span><b>9</b><i data-ar="المراسم والوفود" data-en="Protocol & Delegations"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="num">03</span><h2 data-ar="محفظة الإجراءات حسب الحالة" data-en="Action portfolio by status"></h2>
+      <span class="hint" data-ar="اختاري حالة لتصفية الجدول أدناه" data-en="Pick a status to filter the table below"></span></div>
+    <div class="cards">
+      <div class="c n"><span data-ar="إجمالي الإجراءات" data-en="Total actions"></span><b>26</b><i data-ar="عبر 5 لجان فرعية" data-en="Across 5 subcommittees"></i></div>
+      <div class="c"><span data-ar="مفتوحة" data-en="Open"></span><b>11</b><i data-ar="42% من المحفظة" data-en="42% of portfolio"></i></div>
+      <div class="c g"><span data-ar="قيد التنفيذ" data-en="Under progress"></span><b>6</b><i data-ar="23% من المحفظة" data-en="23% of portfolio"></i></div>
+      <div class="c"><span data-ar="مغلقة" data-en="Closed"></span><b>9</b><i data-ar="نسبة الإغلاق 35%" data-en="35% closure rate"></i></div>
+      <div class="c b"><span data-ar="متأخرة" data-en="Delayed"></span><b>6</b><i data-ar="23% من المحفظة" data-en="23% of portfolio"></i></div>
+    </div>
+  </section>
+
+  <section class="sec grid2">
+    <div class="box"><h3 data-ar="توزيع العبء على اللجان الفرعية" data-en="Workload by subcommittee"></h3>
+      <p class="hint" data-ar="عدد الإجراءات لكل لجنة موزعًا على الحالة." data-en="Actions per subcommittee, split by status."></p>
+      <div class="chart"><canvas id="c-sub"></canvas></div></div>
+    <div class="box"><h3 data-ar="ضغط المواعيد النهائية" data-en="Deadline pressure"></h3>
+      <p class="hint" data-ar="الإجراءات المستحقة شهريًا في الأشهر القادمة." data-en="Actions falling due by month over the coming months."></p>
+      <div class="chart"><canvas id="c-dead"></canvas></div></div>
+  </section>
+
+  <section class="sec grid2">
+    <div class="box"><h3 data-ar="أعمار التأخير" data-en="Overdue aging"></h3>
+      <p class="hint" data-ar="الإجراءات المتأخرة موزعة حسب مدة التأخير." data-en="Overdue actions grouped by how late they are."></p>
+      <div class="chart"><canvas id="c-age"></canvas></div></div>
+    <div class="box"><h3 data-ar="مصادر الإجراءات" data-en="Action sources"></h3>
+      <p class="hint" data-ar="من أي اجتماع نشأ بند العمل." data-en="Which meeting each action item originated from."></p>
+      <div class="chart"><canvas id="c-src"></canvas></div></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="num">04</span><h2 data-ar="سجل الإجراءات" data-en="Action register"></h2></div>
+    <div class="box">
+      <div class="tools">
+        <select id="f-st"></select>
+        <select id="f-sub"></select>
+        <input type="search" id="f-q" placeholder="بحث…">
+      </div>
+      <div class="scroll"><table id="t"></table></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div data-ar="نموذج عرض من إعداد نجلاء العتيبي. أُنجز العمل الأصلي أثناء العمل في معرض الدفاع العالمي، وأُعيد إنشاء هذه النسخة ببيانات وهمية بالكامل لحماية سرية جهة العمل."
+       data-en="Demonstration model prepared by Najla AlOtaibi. The original work was produced during employment at the World Defense Show; this version has been recreated with entirely fictional data to protect employer confidentiality."></div>
+  <div data-ar="هذا النموذج شخصي ولا يمثل نظامًا رسميًا لمعرض الدفاع العالمي ولا اعتمادًا منه." data-en="This model is personal and does not represent an official World Defense Show system or endorsement."></div>
+</footer>
+
+<script>
+const SUB=[{ar:"المراسم والوفود",en:"Protocol & Delegations",o:4,p:2,c:3},
+           {ar:"العمليات والخدمات اللوجستية",en:"Operations & Logistics",o:3,p:1,c:2},
+           {ar:"الاتصال المؤسسي والتسويق",en:"Corp. Comms & Marketing",o:2,p:1,c:2},
+           {ar:"الأمن",en:"Security",o:1,p:1,c:2},
+           {ar:"الفعاليات المصاحبة",en:"Features",o:1,p:1,c:0}];
+const DEAD=[{ar:"يوليو",en:"Jul",n:5},{ar:"أغسطس",en:"Aug",n:7},{ar:"سبتمبر",en:"Sep",n:4},{ar:"أكتوبر",en:"Oct",n:6},{ar:"نوفمبر",en:"Nov",n:3},{ar:"ديسمبر",en:"Dec",n:1}];
+const AGE=[{ar:"1–7 أيام",en:"1–7 days",n:2},{ar:"8–14 يومًا",en:"8–14 days",n:1},{ar:"15–30 يومًا",en:"15–30 days",n:2},{ar:"أكثر من 30 يومًا",en:"30+ days",n:1}];
+const SRC=[{ar:"اللجنة العليا",en:"Main committee",n:9},{ar:"اللجان الفرعية",en:"Subcommittees",n:12},{ar:"مجموعات العمل",en:"Working groups",n:5}];
+const ROWS=[
+ {id:"ACT-26-001",sub:0,st:"d",ar:"اعتماد مسار الجولة للوفد التجريبي 3",en:"Approve tour route for demo delegation 3",due:"18 يونيو 2026|18 Jun 2026",late:52,pr:70,src:0},
+ {id:"ACT-26-004",sub:1,st:"d",ar:"تأكيد مزود خدمة النقل الداخلي",en:"Confirm internal transport provider",due:"02 يوليو 2026|02 Jul 2026",late:38,pr:55,src:1},
+ {id:"ACT-26-007",sub:0,st:"p",ar:"استكمال بيانات ممثلي الجهات التجريبية",en:"Complete demo entity representative data",due:"29 يوليو 2026|29 Jul 2026",late:0,pr:80,src:1},
+ {id:"ACT-26-009",sub:2,st:"d",ar:"إقرار الخطة الإعلامية للنسخة",en:"Sign off the edition media plan",due:"09 يوليو 2026|09 Jul 2026",late:31,pr:40,src:0},
+ {id:"ACT-26-012",sub:3,st:"o",ar:"تحديث خطة التصاريح والدخول",en:"Update access and permits plan",due:"12 أغسطس 2026|12 Aug 2026",late:0,pr:20,src:1},
+ {id:"ACT-26-015",sub:4,st:"p",ar:"جدولة العروض المصاحبة لليوم الثالث",en:"Schedule day-3 side features",due:"20 أغسطس 2026|20 Aug 2026",late:0,pr:60,src:2},
+ {id:"ACT-26-018",sub:1,st:"c",ar:"اعتماد خطة القوى العاملة للقاعات",en:"Approve hall manpower plan",due:"24 يونيو 2026|24 Jun 2026",late:0,pr:100,src:1},
+ {id:"ACT-26-021",sub:0,st:"d",ar:"مراجعة بروتوكول استقبال كبار الضيوف",en:"Review VIP reception protocol",due:"15 يوليو 2026|15 Jul 2026",late:25,pr:45,src:0},
+ {id:"ACT-26-024",sub:2,st:"c",ar:"إطلاق الهوية البصرية للنسخة التجريبية",en:"Launch demo edition visual identity",due:"30 يونيو 2026|30 Jun 2026",late:0,pr:100,src:2},
+ {id:"ACT-26-027",sub:3,st:"d",ar:"تحديث مصفوفة المخاطر التشغيلية",en:"Update operational risk matrix",due:"22 يوليو 2026|22 Jul 2026",late:18,pr:35,src:1},
+ {id:"ACT-26-030",sub:0,st:"o",ar:"إعداد جدول زيارات اليوم الأول",en:"Draft day-1 visit schedule",due:"05 سبتمبر 2026|05 Sep 2026",late:0,pr:10,src:1},
+ {id:"ACT-26-033",sub:1,st:"d",ar:"إغلاق متطلبات التجهيزات الفنية",en:"Close technical equipment requirements",due:"28 يوليو 2026|28 Jul 2026",late:12,pr:65,src:1}
+];
+let L='ar', charts=[];
+const pick=o=>o[L], d2=s=>s.split('|')[L==='ar'?0:1];
+const ST={o:{ar:"مفتوح",en:"Open",cls:"p-n"},p:{ar:"قيد التنفيذ",en:"Under progress",cls:"p-warn"},c:{ar:"مغلق",en:"Closed",cls:"p-ok"},d:{ar:"متأخر",en:"Delayed",cls:"p-bad"}};
+
+function apply(){
+  document.documentElement.lang=L; document.documentElement.dir=L==='ar'?'rtl':'ltr';
+  document.body.style.fontFamily = L==='ar' ? "'Plex AR',sans-serif" : "'Plex AR',system-ui,sans-serif";
+  document.getElementById('lang').textContent = L==='ar'?'English':'العربية';
+  document.querySelectorAll('[data-ar]').forEach(n=>n.textContent=n.dataset[L]);
+  document.getElementById('f-q').placeholder = L==='ar'?'بحث…':'Search…';
+  document.getElementById('lead').innerHTML = L==='ar'
+    ? '<b>17 إجراءً</b> ما زال مفتوحًا، منها <b>6 متأخرة</b> و<b>7 تستحق خلال أسبوع</b>. أعلى تركيز للعبء في <b>المراسم والوفود</b> بـ 9 إجراءات، وأقدم تأخير بلغ <b>52 يومًا</b>.'
+    : '<b>17 actions</b> remain open, of which <b>6 are overdue</b> and <b>7 fall due within a week</b>. The heaviest workload sits with <b>Protocol &amp; Delegations</b> at 9 actions, and the oldest item is <b>52 days</b> late.';
+  const fs=document.getElementById('f-st'), k1=fs.value;
+  fs.innerHTML = `<option value="">${L==='ar'?'كل الحالات':'All statuses'}</option>`+
+    Object.entries(ST).map(([k,v])=>`<option value="${k}">${v[L]}</option>`).join(''); fs.value=k1;
+  const fb=document.getElementById('f-sub'), k2=fb.value;
+  fb.innerHTML = `<option value="">${L==='ar'?'كل اللجان':'All subcommittees'}</option>`+
+    SUB.map((s,i)=>`<option value="${i}">${pick(s)}</option>`).join(''); fb.value=k2;
+  table(); draw();
+}
+function table(){
+  const st=document.getElementById('f-st').value, sb=document.getElementById('f-sub').value,
+        q=document.getElementById('f-q').value.trim().toLowerCase();
+  const rows=ROWS.filter(r=>(!st||r.st===st)&&(sb===''||r.sub==+sb)&&(!q||(pick(r)+r.id).toLowerCase().includes(q)));
+  document.getElementById('t').innerHTML =
+   `<thead><tr><th>${L==='ar'?'الرقم':'ID'}</th><th>${L==='ar'?'بند العمل':'Action item'}</th><th>${L==='ar'?'اللجنة الفرعية':'Subcommittee'}</th><th>${L==='ar'?'المصدر':'Source'}</th><th>${L==='ar'?'الاستحقاق':'Due date'}</th><th>${L==='ar'?'الحالة':'Status'}</th><th>${L==='ar'?'التأخير':'Late'}</th><th style="min-width:130px">${L==='ar'?'نسبة الإنجاز':'Progress'}</th></tr></thead><tbody>`
+   + (rows.length?rows.map(r=>`<tr><td>${r.id}</td><td>${pick(r)}</td><td>${pick(SUB[r.sub])}</td><td>${pick(SRC[r.src])}</td><td>${d2(r.due)}</td>
+      <td><span class="pill ${ST[r.st].cls}">${ST[r.st][L]}</span></td>
+      <td>${r.late?`<span class="pill ${r.late>30?'p-bad':'p-warn'}">${r.late} ${L==='ar'?'يومًا':'d'}</span>`:'—'}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div class="bar" style="flex:1"><i style="width:${r.pr}%"></i></div><span style="font-size:12px;color:var(--muted)">${r.pr}%</span></div></td></tr>`).join('')
+     :`<tr><td colspan="8" style="color:var(--muted)">${L==='ar'?'لا توجد نتائج':'No results'}</td></tr>`)
+   + `</tbody>`;
+}
+function draw(){
+  charts.forEach(c=>c.destroy()); charts=[];
+  const teal='#2A7A69', tealL='#3FA891', gold='#D69A2A', bad='#CF4B4B', grey='#C9D6D2', grid='#EEF2F0';
+  const f={family:'Plex AR',size:11};
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:f,boxWidth:12,padding:12}}},
+    scales:{x:{grid:{display:false},ticks:{font:f}},y:{grid:{color:grid},ticks:{font:f},beginAtZero:true}}};
+  const stacked=JSON.parse(JSON.stringify(base)); stacked.scales.x.stacked=true; stacked.scales.y.stacked=true;
+
+  charts.push(new Chart(document.getElementById('ring'),{type:'doughnut',
+    data:{datasets:[{data:[9,17],backgroundColor:[gold,'rgba(255,255,255,.14)'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'76%',plugins:{legend:{display:false},tooltip:{enabled:false}}}}));
+
+  charts.push(new Chart(document.getElementById('c-sub'),{type:'bar',
+    data:{labels:SUB.map(pick),datasets:[
+      {label:L==='ar'?'مفتوح':'Open',data:SUB.map(s=>s.o),backgroundColor:tealL,borderRadius:4},
+      {label:L==='ar'?'قيد التنفيذ':'Under progress',data:SUB.map(s=>s.p),backgroundColor:gold,borderRadius:4},
+      {label:L==='ar'?'مغلق':'Closed',data:SUB.map(s=>s.c),backgroundColor:teal,borderRadius:4}]},options:stacked}));
+
+  charts.push(new Chart(document.getElementById('c-dead'),{type:'bar',
+    data:{labels:DEAD.map(pick),datasets:[{label:L==='ar'?'إجراءات مستحقة':'Actions due',data:DEAD.map(d=>d.n),backgroundColor:teal,borderRadius:4}]},
+    options:{...base,plugins:{legend:{display:false}}}}));
+
+  charts.push(new Chart(document.getElementById('c-age'),{type:'bar',
+    data:{labels:AGE.map(pick),datasets:[{label:L==='ar'?'متأخرة':'Overdue',data:AGE.map(a=>a.n),backgroundColor:bad,borderRadius:4}]},
+    options:{...base,plugins:{legend:{display:false}}}}));
+
+  charts.push(new Chart(document.getElementById('c-src'),{type:'doughnut',
+    data:{labels:SRC.map(pick),datasets:[{data:SRC.map(s=>s.n),backgroundColor:[teal,gold,grey],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:f,boxWidth:12,padding:12}}}}}));
+}
+document.getElementById('lang').onclick=()=>{L=L==='ar'?'en':'ar';apply()};
+['f-st','f-sub'].forEach(id=>document.getElementById(id).onchange=table);
+document.getElementById('f-q').oninput=table;
+apply();
+</script>
+</body>
+</html>
