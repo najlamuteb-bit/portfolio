@@ -66,6 +66,7 @@
   function open() { panel.hidden = false; launcher.setAttribute("aria-expanded", "true"); (endpoint ? input : $(".close")).focus(); }
   function close() { panel.hidden = true; launcher.setAttribute("aria-expanded", "false"); launcher.focus(); }
   launcher.onclick = () => panel.hidden ? open() : close(); $(".close").onclick = close;
+  document.querySelectorAll("[data-open-najla-assistant]").forEach(link => link.addEventListener("click", event => { event.preventDefault(); open(); }));
   root.addEventListener("keydown", event => { if (event.key === "Escape" && !panel.hidden) { event.stopPropagation(); close(); } });
   input.addEventListener("keydown", event => { if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); $("form").requestSubmit(); } });
   function add(role, text, refs = []) {
