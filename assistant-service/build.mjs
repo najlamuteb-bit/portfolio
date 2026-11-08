@@ -15,7 +15,7 @@ const docs = [
   { id: "achievements", title: "Recorded achievements", text: text(c.wins.items) },
   { id: "skills", title: "Skills and languages", text: text({groups:c.skills.groups, languages:c.skills.langs}) },
   { id: "credentials", title: "Education and credentials", text: text(c.credentials.groups) },
-  { id: "contact", title: "Published professional contact", text: text({email:c.identity.email, linkedin:c.identity.linkedin, location:c.identity.location}) },
+  { id: "contact", title: "Published professional contact", text: text({email:c.identity.email, phone:c.identity.phone, phoneDisplay:c.identity.phoneDisplay, linkedin:c.identity.linkedin, location:c.identity.location}) },
   { id: "cv", title: "CV download", text: "The published CV is available through the Download CV link. No additional CV facts have been independently extracted." },
   ...c.projects.items.map(p => ({ id:p.id, title:p.title, text:text({summary:p.sum, problem:p.goal, role:p.role, features:p.feats, documentedResult:p.proven, expectedBenefitOnly:p.expected, disclosure:"Demo with fictional data. Demonstration numbers are not actual business results."}) }))
 ];

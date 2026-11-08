@@ -28,7 +28,7 @@ export const DOCUMENTS = [
   {
     "id": "contact",
     "title": "Published professional contact",
-    "text": "{\"email\":\"najlamuteb@gmail.com\",\"linkedin\":\"https://www.linkedin.com/in/najla--alotaibi/\",\"location\":\"Riyadh, Saudi Arabia\"}"
+    "text": "{\"email\":\"najlamuteb@gmail.com\",\"phone\":\"+966535812484\",\"phoneDisplay\":\"+966 53 581 2484\",\"linkedin\":\"https://www.linkedin.com/in/najla--alotaibi/\",\"location\":\"Riyadh, Saudi Arabia\"}"
   },
   {
     "id": "cv",

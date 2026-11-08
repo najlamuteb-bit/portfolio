@@ -28,6 +28,7 @@
       .message{margin:0 0 22px;overflow-wrap:anywhere}.label{display:block;font-size:12px;color:#606a7b;margin-bottom:6px;font-weight:500}.body{white-space:pre-wrap;font-size:14px;line-height:1.8}.user .body{background:#f2f3f6;border-radius:5px;padding:12px 14px}.sources{display:flex;gap:8px 13px;flex-wrap:wrap;margin-top:10px}.sources a{color:#735321;text-underline-offset:3px;font-size:12px}
       .status{margin:0 0 16px;font-size:13px;color:#606a7b}.error{color:#893c32}.retry{border:0;background:none;padding:6px 0;color:#735321;text-decoration:underline;min-height:36px}
       form{margin:0 8px 8px;padding:12px;background:white;border:1px solid var(--line);border-top:0;border-radius:0 0 6px 6px}.input-row{display:flex;align-items:flex-end;gap:8px;padding-top:10px;border-top:1px solid var(--line)}textarea{display:block;resize:none;min-width:0;flex:1;border:0;background:white;padding:7px 4px;color:var(--ink);min-height:44px;max-height:110px;line-height:1.6;font-size:16px}textarea::placeholder{color:#727b8a}.send{width:44px;height:44px;flex:none;border:0;border-radius:4px;background:var(--navy);color:white;display:grid;place-items:center}.privacy{font-size:11px;color:#606a7b;line-height:1.55;margin:9px 0 0}.privacy a{color:inherit}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+      .contact-line{margin:9px 0 0;font-size:12px;line-height:1.6}.contact-line a{color:#735321;text-underline-offset:3px}
       @media(max-width:520px){.launcher{right:16px;bottom:max(16px,env(safe-area-inset-bottom));padding:13px 16px}.panel{right:8px;bottom:82px;width:calc(100% - 16px);max-width:none;height:620px;max-height:calc(100dvh - 98px)}header{padding:14px 16px}.scroll{padding:17px}h2{font-size:17px}}
       @media(prefers-reduced-motion:reduce){.scroll{scroll-behavior:auto}}
     </style>
@@ -39,6 +40,13 @@
     </section>`;
   document.body.append(host);
   const $ = selector => root.querySelector(selector);
+  const identity = typeof CONTENT !== "undefined" ? CONTENT.identity : null;
+  if (identity?.phone && /^\+?[0-9 ()-]{7,25}$/.test(identity.phone)) {
+    const contactLine = document.createElement("p"); contactLine.className = "contact-line";
+    const call = document.createElement("a"); call.href = `tel:${identity.phone.replace(/[^+0-9]/g, "")}`;
+    call.textContent = `Call Najla: ${identity.phoneDisplay || identity.phone}`;
+    contactLine.append(call); $("form").append(contactLine);
+  }
   const launcher = $(".launcher"), panel = $(".panel"), input = $("textarea"), messages = $(".messages"), status = $(".status"), scroller = $(".scroll");
   let history = [], controller = null, pending = false, retryMessage = null;
   const sources = {
@@ -66,7 +74,7 @@
   function open() { panel.hidden = false; launcher.setAttribute("aria-expanded", "true"); (endpoint ? input : $(".close")).focus(); }
   function close() { panel.hidden = true; launcher.setAttribute("aria-expanded", "false"); launcher.focus(); }
   launcher.onclick = () => panel.hidden ? open() : close(); $(".close").onclick = close;
-  document.querySelectorAll("[data-open-najla-assistant]").forEach(link => link.addEventListener("click", event => { event.preventDefault(); open(); }));
+  document.querySelectorAll("[data-open-najla-assistant]").forEach(link => link.addEventListener("click", event => { event.preventDefault(); event.stopPropagation(); open(); }));
   root.addEventListener("keydown", event => { if (event.key === "Escape" && !panel.hidden) { event.stopPropagation(); close(); } });
   input.addEventListener("keydown", event => { if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); $("form").requestSubmit(); } });
   function add(role, text, refs = []) {
@@ -89,8 +97,10 @@
     if (!retry) { add("user", question); input.value = ""; }
     retryMessage = question; $(".suggestions").hidden = true; busy(true); status.replaceChildren(); status.textContent = "Checking Najla’s portfolio…"; status.className = "status"; status.hidden = false;
     const active = new AbortController(); controller = active; const timeout = setTimeout(() => active.abort(), 35000);
+    const requestHistory = history.slice(-8);
+    while (requestHistory.length && (requestHistory.reduce((n, item) => n + item.content.length, 0) > 7000 || new TextEncoder().encode(JSON.stringify({ message: question, history: requestHistory })).length > 11000)) requestHistory.shift();
     try {
-      const response = await fetch(endpoint.href, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "omit", body: JSON.stringify({ message: question, history: history.slice(-8) }), signal: active.signal });
+      const response = await fetch(endpoint.href, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "omit", body: JSON.stringify({ message: question, history: requestHistory }), signal: active.signal });
       const result = await response.json();
       if (!response.ok) throw Object.assign(new Error("request_failed"), { code: result.code });
       if (typeof result.answer !== "string" || !Array.isArray(result.sources)) throw new Error("invalid_answer");
