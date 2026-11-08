@@ -2,16 +2,19 @@
 (() => {
   "use strict";
   const config = window.NAJLA_ASSISTANT;
-  if (!config?.enabled || !config.endpoint) return;
-  const endpoint = new URL(config.endpoint, location.href);
-  if (endpoint.protocol !== "https:" && !["localhost", "127.0.0.1"].includes(endpoint.hostname)) return;
+  if (!config?.enabled) return;
+  let endpoint = null;
+  try {
+    if (config.endpoint) endpoint = new URL(config.endpoint, location.href);
+  } catch { /* Show the portfolio guide if an endpoint is not configured correctly. */ }
+  if (endpoint && endpoint.protocol !== "https:" && !["localhost", "127.0.0.1"].includes(endpoint.hostname)) endpoint = null;
   const host = document.createElement("div");
   host.id = "najla-assistant";
   const root = host.attachShadow({ mode: "open" });
   root.innerHTML = `
     <style>
       :host{--ink:#14213d;--navy:#0e1a33;--gold:#c5a066;--line:#e7e2d8;font-family:'Plex LAT',system-ui,sans-serif;font-size:14px;color:var(--ink);position:relative;z-index:65}
-      *,*:before,*:after{box-sizing:border-box}button,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.6}[hidden]{display:none!important}
+      *,*:before,*:after{box-sizing:border-box}button,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.6}[hidden]{display:none!important}
       button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       .launcher{position:fixed;right:24px;bottom:24px;display:flex;align-items:center;gap:10px;padding:15px 19px;background:var(--navy);color:white;border:1px solid #ffffff55;border-radius:6px;box-shadow:0 5px 18px #0e1a3320;min-height:50px;font-weight:500}
       svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none}
@@ -21,7 +24,7 @@
       .icon-button{background:none;border:0;display:grid;place-items:center;width:36px;height:36px;border-radius:4px;color:var(--ink)}.icon-button:hover{background:#f0eee9}
       .scroll{padding:20px;overflow:auto;overscroll-behavior:contain;flex:1;background:white;margin:8px 8px 0;border:1px solid var(--line);border-bottom:0;border-radius:6px 6px 0 0;scroll-behavior:smooth}
       .intro{margin:0 0 18px;font-size:15px;line-height:1.7}.intro strong{display:block;font-size:19px;font-weight:500;margin:0 0 8px}
-      .suggestions{display:flex;flex-direction:column;gap:8px;margin:14px 0 20px}.suggestions button{text-align:left;background:white;border:1px solid #d7d9de;border-radius:4px;padding:10px 12px;color:var(--ink);min-height:44px}.suggestions button:hover{border-color:#9e7a42;background:#fbfaf7}
+      .suggestions{display:flex;flex-direction:column;gap:8px;margin:14px 0 20px}.suggestions button,.suggestions a{text-align:left;background:white;border:1px solid #d7d9de;border-radius:4px;padding:10px 12px;color:var(--ink);min-height:44px;text-decoration:none;font:inherit}.suggestions button:hover,.suggestions a:hover{border-color:#9e7a42;background:#fbfaf7}
       .message{margin:0 0 22px;overflow-wrap:anywhere}.label{display:block;font-size:12px;color:#606a7b;margin-bottom:6px;font-weight:500}.body{white-space:pre-wrap;font-size:14px;line-height:1.8}.user .body{background:#f2f3f6;border-radius:5px;padding:12px 14px}.sources{display:flex;gap:8px 13px;flex-wrap:wrap;margin-top:10px}.sources a{color:#735321;text-underline-offset:3px;font-size:12px}
       .status{margin:0 0 16px;font-size:13px;color:#606a7b}.error{color:#893c32}.retry{border:0;background:none;padding:6px 0;color:#735321;text-decoration:underline;min-height:36px}
       form{margin:0 8px 8px;padding:12px;background:white;border:1px solid var(--line);border-top:0;border-radius:0 0 6px 6px}.input-row{display:flex;align-items:flex-end;gap:8px;padding-top:10px;border-top:1px solid var(--line)}textarea{display:block;resize:none;min-width:0;flex:1;border:0;background:white;padding:7px 4px;color:var(--ink);min-height:44px;max-height:110px;line-height:1.6;font-size:16px}textarea::placeholder{color:#727b8a}.send{width:44px;height:44px;flex:none;border:0;border-radius:4px;background:var(--navy);color:white;display:grid;place-items:center}.privacy{font-size:11px;color:#606a7b;line-height:1.55;margin:9px 0 0}.privacy a{color:inherit}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -44,7 +47,23 @@
     committees: ["Committee system", "#p-committees"], delegations: ["Delegation system", "#p-delegations"], actions: ["Actions tracker", "work/actions-tracker.html"],
     dashboards: ["Executive dashboards", "work/dashboards.html"], monthly: ["Excel demo", "work/Monthly-Task-Tracker-DEMO.xlsx"]
   };
-  function open() { panel.hidden = false; launcher.setAttribute("aria-expanded", "true"); input.focus(); }
+  if (!endpoint) {
+    $(".subtitle").textContent = "Portfolio assistant";
+    $(".intro").replaceChildren();
+    const welcome = document.createElement("strong"); welcome.textContent = "Get to know Najla.";
+    $(".intro").append(welcome, document.createTextNode("AI replies are temporarily unavailable. Explore her published experience, projects and qualifications below, or contact her directly."));
+    $(".suggestions").replaceChildren();
+    for (const id of ["experience", "committees", "credentials", "cv", "contact"]) {
+      const a = document.createElement("a"); [a.textContent, a.href] = sources[id];
+      if (id === "cv") a.download = "";
+      a.onclick = () => { if (a.getAttribute("href").startsWith("#")) close(); };
+      $(".suggestions").append(a);
+    }
+    input.disabled = true; input.required = false; input.placeholder = "AI replies are temporarily unavailable";
+    $(".send").disabled = true;
+    $(".privacy").replaceChildren(document.createTextNode("Answers will use Najla’s published portfolio. For other questions, please contact her directly."));
+  }
+  function open() { panel.hidden = false; launcher.setAttribute("aria-expanded", "true"); (endpoint ? input : $(".close")).focus(); }
   function close() { panel.hidden = true; launcher.setAttribute("aria-expanded", "false"); launcher.focus(); }
   launcher.onclick = () => panel.hidden ? open() : close(); $(".close").onclick = close;
   root.addEventListener("keydown", event => { if (event.key === "Escape" && !panel.hidden) { event.stopPropagation(); close(); } });
@@ -60,11 +79,11 @@
     }
     messages.append(item); scroller.scrollTop = scroller.scrollHeight;
   }
-  function busy(value) { pending = value; $(".send").disabled = value; input.readOnly = value; root.querySelectorAll(".suggestions button").forEach(b => b.disabled = value); messages.setAttribute("aria-busy", String(value)); }
+  function busy(value) { pending = value; $(".send").disabled = value || !endpoint; input.readOnly = value; root.querySelectorAll(".suggestions button").forEach(b => b.disabled = value); messages.setAttribute("aria-busy", String(value)); }
   function clear() { controller?.abort(); controller = null; history = []; retryMessage = null; messages.replaceChildren(); status.hidden = true; $(".suggestions").hidden = false; busy(false); input.value = ""; input.focus(); }
   $(".reset").onclick = clear;
   async function send(question, retry = false) {
-    if (pending || !question.trim()) return;
+    if (!endpoint || pending || !question.trim()) return;
     question = question.trim(); if (question.length > 1200) return;
     if (!retry) { add("user", question); input.value = ""; }
     retryMessage = question; $(".suggestions").hidden = true; busy(true); status.replaceChildren(); status.textContent = "Checking Najla’s portfolio…"; status.className = "status"; status.hidden = false;

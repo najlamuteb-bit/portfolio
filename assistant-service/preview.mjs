@@ -9,7 +9,6 @@ const types={".html":"text/html; charset=utf-8",".css":"text/css",".js":"text/ja
 const server=http.createServer(async(req,res)=>{
  try{
   const pathname=decodeURIComponent(new URL(req.url,"http://127.0.0.1").pathname);
-  if(pathname==="/assets/js/assistant-config.js"){res.writeHead(200,{"Content-Type":"text/javascript"});res.end('window.NAJLA_ASSISTANT={enabled:true,endpoint:"http://127.0.0.1:8791/chat"};');return}
   if(pathname==="/chat"){res.writeHead(503,{"Content-Type":"application/json"});res.end('{"code":"service_unavailable"}');return}
   const file=path.resolve(root,"."+(pathname==="/"?"/index.html":pathname));
   if(!file.startsWith(root+path.sep)||file.split(path.sep).some(p=>p.startsWith("."))||file.includes(path.sep+"assistant-service"+path.sep)){res.writeHead(403);res.end();return}

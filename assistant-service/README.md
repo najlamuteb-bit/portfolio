@@ -1,6 +1,6 @@
 # Ask about Najla
 
-A small English-only portfolio assistant. The existing site is unchanged except for two scripts at the end of `index.html`. The widget is disabled until its backend is deployed and verified; no inactive AI feature is added to the live portfolio.
+A small English-only portfolio assistant. The existing site is unchanged except for two scripts at the end of `index.html`. The widget is visible on the portfolio. Until a verified backend endpoint is configured, it offers direct portfolio links and clearly states that AI replies are temporarily unavailable. Sending messages is disabled in that state.
 
 ## Source of answers
 
@@ -26,7 +26,7 @@ node --test assistant-service/test/*.test.mjs
 node assistant-service/preview.mjs
 ```
 
-The local preview shows the real widget and its unavailable-service state. It never fabricates AI replies. Unit tests use explicitly mocked responses, not a live-model evaluation.
+The local preview shows the real widget and its current configured state. With no backend endpoint, it shows portfolio links, disables message submission and discloses that AI replies are unavailable. It never fabricates AI replies. Unit tests use explicitly mocked responses, not a live-model evaluation.
 
 ## Deployment (activation pending)
 
