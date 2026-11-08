@@ -1,0 +1,10 @@
+{
+  "name": "najla-portfolio-assistant-service",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "preview": "node preview.mjs"
+  }
+}

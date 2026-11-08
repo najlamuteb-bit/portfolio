@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.openai-local/
+dist/
+.wrangler/
+.taste-skill/
+test-results/
