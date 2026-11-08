@@ -74,6 +74,7 @@ export function parseAnswer(data){
 export function createHandler({fetchModel=fetch,reserve=reserveQuota}={}){
   return async function handle(request,env={},ctx={waitUntil(){}}){
     const url=new URL(request.url),origin=request.headers.get("Origin"),allowed=origins(env).has(origin);
+    if(url.pathname==="/"&&request.method==="GET")return new Response('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Najla Portfolio Assistant</title><body style="margin:0;background:#0e1a33;color:white;font:18px/1.8 system-ui;padding:12vh 8vw"><h1>Najla’s portfolio assistant</h1><p>This service supports questions about Najla’s published professional portfolio.</p><a style="color:#d9bb86" href="https://najlamuteb-bit.github.io/portfolio/">Visit Najla’s portfolio →</a></body></html>',{headers:{'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff'}});
     if(url.pathname==="/health"&&request.method==="GET")return reply({service:"Najla portfolio assistant",configured:Boolean(env.OPENAI_API_KEY&&env.DB&&env.RATE_LIMIT_SALT)},200,allowed?origin:null);
     if(url.pathname!=="/chat")return fail("not_found",404);
     if(!allowed)return fail("origin_not_allowed",403);

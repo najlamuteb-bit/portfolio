@@ -28,7 +28,7 @@ node assistant-service/preview.mjs
 
 The local preview shows the real widget and its current configured state. With no backend endpoint, it shows portfolio links, disables message submission and discloses that AI replies are unavailable. It never fabricates AI replies. Unit tests use explicitly mocked responses, not a live-model evaluation.
 
-## Deployment (activation pending)
+## Deployment
 
 1. Activate API billing or claim eligible API credits. A key has been created locally in the ignored `.env.local`; never commit or copy its contents into browser assets.
 2. Deploy `dist/server/index.js` as a Cloudflare Worker-compatible server, bind `DB` to D1 and apply `migrations/0001_quota.sql` through the deployment migration process.
@@ -36,4 +36,6 @@ The local preview shows the real widget and its current configured state. With n
 4. Verify live answers (experience, projects, unknown salary, private details, unrelated questions and prompt-injection attempts) from the portfolio origin. Confirm source links and quota behavior.
 5. Set the public `assets/js/assistant-config.js` to `{enabled:true,endpoint:"https://YOUR-VERIFIED-SERVICE/chat"}` and publish that change to GitHub Pages. The endpoint URL is public; the API key is not.
 
-No backend or live-model verification has been completed while API billing is inactive. Do not mark the assistant as live until the activation steps pass.
+The service was deployed on 2026-11-08 at https://najla-portfolio-assistant.najla-alotai-3033.chatgpt.site. Its `/health` and `/chat` endpoints passed production HTTP checks with the portfolio origin. Six live-model checks covered experience, project ownership, qualifications, unknown salary/availability, fabricated-credential injection and unrelated questions. Eleven backend unit tests passed. The public widget config now points to the deployed `/chat` endpoint.
+
+The production service source and D1 migration are maintained in the dedicated Sites project `appgprj_6af0490450408191a310e2e1a7f68afd`. Rebuild and republish that service after changing the source documents or backend rules. The local `.env.local` is ignored and must never be uploaded.
